@@ -58,6 +58,11 @@ function displayHand(hand, elementId) {
         cardElement.innerHTML = `${card.value} ${getSuitEmoji(card.suit)}`;
         handElement.appendChild(cardElement);
     }
+    // Display the score
+    const scoreElement = document.createElement('div');
+    scoreElement.className = 'score';
+    scoreElement.innerHTML = `Score: ${calculateScore(hand)}`;
+    handElement.appendChild(scoreElement);
 }
 
 // Function to return the suit emoji based on suit text
@@ -91,6 +96,7 @@ function hit() {
     if (playerScore > 21) {
         displayMessage('You busted! Dealer wins.');
         gameOver = true;
+        showNewGameButton();
     }
 }
 
@@ -112,6 +118,7 @@ function stand() {
     } else {
         displayMessage('It\'s a tie.');
     }
+    showNewGameButton();
 }
 
 // Function to start a new game
@@ -123,6 +130,21 @@ function newGame() {
     displayHand(playerHand, 'player');
     displayHand(dealerHand, 'dealer');
     displayMessage('');
+    hideNewGameButton();
+}
+
+// Function to show the "New Game" button and hide other buttons
+function showNewGameButton() {
+    document.getElementById('new-game').style.display = 'block';
+    document.getElementById('hit').style.display = 'none';
+    document.getElementById('stand').style.display = 'none';
+}
+
+// Function to hide the "New Game" button and show other buttons
+function hideNewGameButton() {
+    document.getElementById('new-game').style.display = 'none';
+    document.getElementById('hit').style.display = 'inline';
+    document.getElementById('stand').style.display = 'inline';
 }
 
 // Event listeners for the buttons
