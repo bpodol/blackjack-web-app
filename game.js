@@ -1,4 +1,3 @@
-
 // Define variables to keep track of the game state
 let playerHand = [];
 let dealerHand = [];
