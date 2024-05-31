@@ -1,3 +1,4 @@
+
 // Define variables to keep track of the game state
 let playerHand = [];
 let dealerHand = [];
@@ -48,15 +49,31 @@ function calculateScore(hand) {
     return score;
 }
 
-// Function to display the hand
+// Function to display the hand with suit emojis
 function displayHand(hand, elementId) {
     const handElement = document.getElementById(elementId);
     handElement.innerHTML = '';
     for (const card of hand) {
         const cardElement = document.createElement('div');
         cardElement.className = 'card';
-        cardElement.innerHTML = `${card.value} of ${card.suit}`;
+        cardElement.innerHTML = `${card.value} ${getSuitEmoji(card.suit)}`;
         handElement.appendChild(cardElement);
+    }
+}
+
+// Function to return the suit emoji based on suit text
+function getSuitEmoji(suit) {
+    switch (suit) {
+        case 'hearts':
+            return '♥️';
+        case 'diamonds':
+            return '♦️';
+        case 'clubs':
+            return '♣️';
+        case 'spades':
+            return '♠️';
+        default:
+            return '';
     }
 }
 
