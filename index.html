@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #game { margin-top: 20px; }
+        .card { display: inline-block; width: 60px; height: 90px; margin: 10px; border: 1px solid #000; }
+    </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1>Blackjack Game</h1>
+    <div id="game">
+        <div id="dealer"></div>
+        <div id="player"></div>
+        <button id="hit">Hit</button>
+        <button id="stand">Stand</button>
+        <div id="message"></div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
