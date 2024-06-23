@@ -1,8 +1,8 @@
-// Define variables to keep track of the game state
 let playerHand = [];
 let dealerHand = [];
 let deck = [];
 let gameOver = false;
+let playerBalance = 1000;
 
 // Function to create a deck of cards
 function createDeck() {
@@ -59,10 +59,8 @@ function displayHand(hand, elementId) {
         handElement.appendChild(cardElement);
     }
     // Display the score
-    const scoreElement = document.createElement('div');
-    scoreElement.className = 'score';
+    const scoreElement = document.getElementById(`${elementId}-score`);
     scoreElement.innerHTML = `Score: ${calculateScore(hand)}`;
-    handElement.appendChild(scoreElement);
 }
 
 // Function to return the suit emoji based on suit text
@@ -113,11 +111,14 @@ function stand() {
     const dealerScore = calculateScore(dealerHand);
     if (dealerScore > 21 || playerScore > dealerScore) {
         displayMessage('You win!');
+        playerBalance += 100; // Adjust as needed for betting logic
     } else if (playerScore < dealerScore) {
         displayMessage('Dealer wins.');
+        playerBalance -= 100; // Adjust as needed for betting logic
     } else {
         displayMessage('It\'s a tie.');
     }
+    updateBalance();
     showNewGameButton();
 }
 
@@ -133,9 +134,14 @@ function newGame() {
     hideNewGameButton();
 }
 
+// Function to update the player's balance
+function updateBalance() {
+    document.getElementById('balance').innerText = `$${playerBalance}`;
+}
+
 // Function to show the "New Game" button and hide other buttons
 function showNewGameButton() {
-    document.getElementById('new-game').style.display = 'block';
+    document.getElementById('new-game').style.display = 'inline-block';
     document.getElementById('hit').style.display = 'none';
     document.getElementById('stand').style.display = 'none';
 }
@@ -143,14 +149,14 @@ function showNewGameButton() {
 // Function to hide the "New Game" button and show other buttons
 function hideNewGameButton() {
     document.getElementById('new-game').style.display = 'none';
-    document.getElementById('hit').style.display = 'inline';
-    document.getElementById('stand').style.display = 'inline';
+    document.getElementById('hit').style.display = 'inline-block';
+    document.getElementById('stand').style.display = 'inline-block';
 }
 
-// Event listeners for the buttons
+// Event listeners for buttons
 document.getElementById('hit').addEventListener('click', hit);
 document.getElementById('stand').addEventListener('click', stand);
 document.getElementById('new-game').addEventListener('click', newGame);
 
-// Start a new game when the page loads
+// Start a new game on load
 newGame();

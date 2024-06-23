@@ -8,16 +8,27 @@
     <script defer src="game.js"></script>
 </head>
 <body>
-    <h1>Blackjack Game</h1>
     <div id="game">
+        <div id="balance">$1,000</div>
         <div id="dealer" class="hand"></div>
         <div id="player" class="hand"></div>
+        <div id="score-container">
+            <div id="dealer-score"></div>
+            <div id="player-score"></div>
+        </div>
         <div id="button-container">
-            <button id="hit">Hit</button>
-            <button id="stand">Stand</button>
-            <button id="new-game" style="display: none;">New Game</button>
+            <button id="hit">HIT</button>
+            <button id="stand">STAND</button>
+            <button id="new-game" style="display: none;">NEW GAME</button>
         </div>
         <div id="message"></div>
+        <div id="chip-container">
+            <button class="chip" data-value="5">5</button>
+            <button class="chip" data-value="25">25</button>
+            <button class="chip" data-value="100">100</button>
+            <button class="chip" data-value="500">500</button>
+            <button class="chip" data-value="1000">1000</button>
+        </div>
     </div>
 </body>
 </html>
