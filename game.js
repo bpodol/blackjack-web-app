@@ -50,7 +50,7 @@ function calculateScore(hand) {
 
 // Function to display the hand with suit emojis
 function displayHand(hand, elementId, scoreId) {
-    const handElement = document.getElementById(elementId);
+    const handElement = document.getElementById(elementId + '-cards');
     handElement.innerHTML = '';
     for (const card of hand) {
         const cardElement = document.createElement('div');

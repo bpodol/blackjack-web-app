@@ -72,10 +72,11 @@ button {
     padding: 10px 20px;
     margin: 5px;
     font-size: 18px;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: #fff;
+    border-radius: 50%;
     border: none;
+    background-color: #f0ad4e;
+    color: #fff;
+    cursor: pointer;
 }
 
 #message {
