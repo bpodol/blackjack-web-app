@@ -49,7 +49,7 @@ function calculateScore(hand) {
 }
 
 // Function to display the hand with suit emojis
-function displayHand(hand, elementId) {
+function displayHand(hand, elementId, scoreId) {
     const handElement = document.getElementById(elementId);
     handElement.innerHTML = '';
     for (const card of hand) {
@@ -59,8 +59,8 @@ function displayHand(hand, elementId) {
         handElement.appendChild(cardElement);
     }
     // Display the score
-    const scoreElement = document.getElementById(`${elementId}-score`);
-    scoreElement.innerHTML = `Score: ${calculateScore(hand)}`;
+    const scoreElement = document.getElementById(scoreId);
+    scoreElement.innerHTML = `Points: ${calculateScore(hand)}`;
 }
 
 // Function to return the suit emoji based on suit text
@@ -89,7 +89,7 @@ function displayMessage(message) {
 function hit() {
     if (gameOver) return;
     playerHand.push(deck.pop());
-    displayHand(playerHand, 'player');
+    displayHand(playerHand, 'player', 'player-score');
     const playerScore = calculateScore(playerHand);
     if (playerScore > 21) {
         displayMessage('You busted! Dealer wins.');
@@ -106,7 +106,7 @@ function stand() {
     while (calculateScore(dealerHand) < 17) {
         dealerHand.push(deck.pop());
     }
-    displayHand(dealerHand, 'dealer');
+    displayHand(dealerHand, 'dealer', 'dealer-score');
     const playerScore = calculateScore(playerHand);
     const dealerScore = calculateScore(dealerHand);
     if (dealerScore > 21 || playerScore > dealerScore) {
@@ -128,8 +128,8 @@ function newGame() {
     playerHand = [deck.pop(), deck.pop()];
     dealerHand = [deck.pop(), deck.pop()];
     gameOver = false;
-    displayHand(playerHand, 'player');
-    displayHand(dealerHand, 'dealer');
+    displayHand(playerHand, 'player', 'player-score');
+    displayHand(dealerHand, 'dealer', 'dealer-score');
     displayMessage('');
     hideNewGameButton();
 }
